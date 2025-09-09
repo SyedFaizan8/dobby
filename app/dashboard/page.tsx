@@ -6,7 +6,6 @@ import {
     Search,
     LogOut,
     Folder as FolderIcon,
-    Image as ImageIcon,
     Trash,
     Plus,
     Upload as UploadIcon,
@@ -386,7 +385,7 @@ export default function Dashboard() {
                         {/* center search (hidden on very small screens) */}
                         <div className="hidden sm:flex sm:flex-1 sm:justify-center px-4">
                             <div className="w-full max-w-xl flex items-center gap-2">
-                                <Search className="w-4 h-4 text-gray-500" />
+                                <Search className="w-6 h-6 text-gray-500" />
                                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search images or folders..." />
                             </div>
                         </div>
@@ -408,13 +407,13 @@ export default function Dashboard() {
                             <div className="space-y-2">
                                 <div className="px-2">
                                     <div className="flex items-center gap-2">
-                                        <Search className="w-4 h-4 text-gray-500" />
+                                        <Search className="w-6 h-6 text-gray-500" />
                                         <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search..." />
                                     </div>
                                 </div>
                                 <div className="px-2">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-sm font-medium">John Doe</span>
+                                        <span className="text-sm font-medium">{name}</span>
                                         <Button variant="ghost" size="sm" onClick={() => alert("logout")}>
                                             <LogOut className="w-4 h-4 mr-2" /> Logout
                                         </Button>

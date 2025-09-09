@@ -19,22 +19,21 @@ async function deleteFolderRecursive(folderId: string, userId: string) {
 }
 
 export async function DELETE(req: Request,
-    { params }: { params: { id?: string } | Promise<{ id?: string }> }) {
+    { params }: { params: Promise<{ id: string }> }) {
     try {
-        const awaitedParams = (await params) as { id?: string } | undefined;
-        const folderId = awaitedParams?.id;
-        if (!folderId) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+        const { id } = await params;
+        if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
         const userId = await getUserIdFromReq(req);
         if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-        const folder = await prisma.folder.findUnique({ where: { id: folderId } });
+        const folder = await prisma.folder.findUnique({ where: { id } });
         if (!folder) return NextResponse.json({ error: "Folder not found" }, { status: 404 });
         if (folder.userId !== userId) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
-        await deleteFolderRecursive(folderId, userId);
+        await deleteFolderRecursive(id, userId);
 
         return NextResponse.json({ success: true }, { status: 201 });
     } catch (err) {

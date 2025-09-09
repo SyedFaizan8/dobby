@@ -7,10 +7,10 @@ export async function POST(req: Request) {
     try {
         const { email, password } = await req.json();
         const user = await prisma.user.findUnique({ where: { email } });
-        if (!user) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
+        if (!user) return NextResponse.json({ error: 'User Not Found' }, { status: 401 });
 
         const ok = await compare(password, user.password);
-        if (!ok) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
+        if (!ok) return NextResponse.json({ error: 'Incorrect Password' }, { status: 401 });
 
         const token = signToken({ userId: user.id });
         const res = NextResponse.json({ ok: true, user: { id: user.id, name: user.name, email: user.email } }, { status: 201 });

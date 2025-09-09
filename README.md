@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Dobby Storage
 
-## Getting Started
+Dobby Storage is built with **Next.js, Prisma, MongoDB, and ImageKit**.
+It allows users to create folders (including nested folders), upload and manage images, and search files easily.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- 🔐 **Authentication** (Register, Login, Logout)
+- 📁 **Folder System** (create nested folders per user)
+- 🖼️ **Image Uploads** with [ImageKit](https://imagekit.io/)
+- 🔍 **Search Images** by name
+- 🗑️ **Delete Folders / Images**
+- 🎨 **Modern UI** built with Next.js & Tailwind CSS
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 15 (App Router)**
+- **TypeScript**
+- **Prisma ORM**
+- **MongoDB** (via Prisma adapter)
+- **ImageKit** (cloud image storage & CDN)
+- **Tailwind CSS** (UI styling)
+- **Lucide Icons** (icons)
+
+---
+
+## ⚙️ Environment Variables
+
+Create a **\`.env\`** file in the root with:
+
+```env
+DATABASE_URL="your_mongo_connection_string"
+IMAGEKIT_PUBLIC_KEY="your_public_key"
+IMAGEKIT_PRIVATE_KEY="your_private_key"
+IMAGEKIT_PUBLIC_URL_ENDPOINT="your_url_endpoint"
+JWT_SECRET="your_jwt_secret"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ▶️ Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repo**
 
-## Learn More
+   ```bash
+   git clone https://github.com/syedfaizan8/dobby.git
+   cd dobby-storage
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Setup Prisma**
 
-## Deploy on Vercel
+   ```bash
+   npx prisma db push
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the development server**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) 🚀
+
+---
+
+## 🔑 Usage
+
+- Register/Login to create your account
+- Create folders and nested folders
+- Upload images into specific folders
+- Search images by name
+- Delete files/folders when needed
+
+---

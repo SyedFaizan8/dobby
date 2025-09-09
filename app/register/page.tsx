@@ -56,13 +56,18 @@ export default function Register() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
-        console.log("Form submitted:", form);
 
-        const { username: name, email, password } = form;
-        const response = await axios.post("/api/register", { name, email, password });
-
-        if (response.status !== 201) alert("something went wrong while registering a user");
-        else router.push('/');
+        try {
+            console.log("Form submitted:", form);
+            const { username: name, email, password } = form;
+            await axios.post("/api/register", { name, email, password });
+            router.push('/dashboard');
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                console.log("logging data is " + e.response?.data.error)
+                alert(e.response?.data.error)
+            }
+        }
     };
 
     return (

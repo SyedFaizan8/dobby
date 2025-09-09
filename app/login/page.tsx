@@ -45,9 +45,15 @@ export default function Login() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
-        const response = await axios.post("/api/login", form);
-        if (response.status !== 201) alert("failed to login") // use toast here
-        else router.push('/dashboard');
+        try {
+            await axios.post("/api/login", form);
+            router.push('/dashboard');
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                console.log("logging data is " + e.response?.data.error)
+                alert(e.response?.data.error)
+            }
+        }
     };
 
     return (
